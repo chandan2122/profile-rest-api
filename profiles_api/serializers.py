@@ -32,9 +32,16 @@ class HelloSerializer(serializers.Serializer):
 #         )
 #
 #         return user
-    # def update (self, instance, validated_data):
-    #     """Create and return a new user"""
-    #     if 'password' in validated_data:
-    #         password= validated_data.pop('password')
-    #         instance.set_password(password)
-    #     return super().update(instance, validated_data)
+#     def update (self, instance, validated_data):
+#         """Create and return a new user"""
+#         if 'password' in validated_data:
+#             password= validated_data.pop('password')
+#             instance.set_password(password)
+#         return super().update(instance, validated_data)
+
+class ProfileFeedItenSerializer(serializers.ModelSerializer):
+    """Serializers profile feed items"""
+    class Meta:
+        model = models.ProfileFeedItem
+        fields = ('id', 'user_profile', 'status_text', 'created_on')
+        extra_kqargs = {'user_profile':{'read_only':True}}
